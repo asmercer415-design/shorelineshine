@@ -1,1 +1,5 @@
 .DS_Store
+
+# Raw source media — kept locally, not published to the site repo.
+Photos/
+assets/gallery/*.mov

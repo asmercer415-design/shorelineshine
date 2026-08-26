@@ -384,7 +384,7 @@
 
   .work-thumb {
     position: relative;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 9 / 16;
     overflow: hidden;
     background: #000;
   }
@@ -392,14 +392,13 @@
   .work-thumb.video-thumb { aspect-ratio: 9 / 16; }
 
   .work-thumb img {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    cursor: pointer;
-    transition: transform 0.35s;
+    object-fit: contain;
+    cursor: zoom-in;
   }
-
-  .work-thumb img:hover { transform: scale(1.06); }
 
   .work-thumb video {
     width: 100%;
@@ -411,6 +410,7 @@
 
   .work-tag {
     position: absolute;
+    z-index: 2;
     top: 10px;
     left: 10px;
     background: rgba(5, 8, 13, 0.75);
@@ -436,6 +436,8 @@
     grid-template-columns: 1fr 1fr;
     gap: 18px;
     margin-bottom: 18px;
+    max-width: 660px;
+    margin-inline: auto;
   }
 
   .video-highlight-head {
@@ -478,6 +480,143 @@
     font-size: 0.72rem;
   }
 
+  /* ---------- Gallery carousel ---------- */
+  .carousel { position: relative; }
+
+  .carousel-track {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: 4px;
+  }
+
+  .carousel-track::-webkit-scrollbar { display: none; }
+
+  .carousel-track.is-static { justify-content: center; }
+
+  .carousel-slide {
+    flex: 0 0 78%;
+    max-width: 300px;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--card-border);
+    background: var(--card);
+    transition: border-color 0.25s;
+  }
+
+  .carousel-slide:hover { border-color: var(--blue); }
+
+  .carousel-media {
+    position: relative;
+    aspect-ratio: 9 / 16;
+    min-height: 0;
+    background: #000;
+  }
+
+  /* Absolute so the frame's aspect-ratio wins over the media's intrinsic size,
+     keeping every slide the same height regardless of photo dimensions. */
+  .carousel-media img,
+  .carousel-media video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .carousel-media img { cursor: zoom-in; }
+
+  .carousel-caption {
+    padding: 12px 14px;
+    font-size: 0.85rem;
+    color: var(--silver);
+    line-height: 1.4;
+    min-height: 62px;
+  }
+
+  .carousel-nav {
+    position: absolute;
+    top: calc((100% - 62px) / 2);
+    transform: translateY(-50%);
+    z-index: 5;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1px solid var(--card-border);
+    background: rgba(5, 8, 13, 0.82);
+    color: var(--blue-bright);
+    font-size: 1.6rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(6px);
+    transition: background 0.2s, color 0.2s, opacity 0.2s, border-color 0.2s;
+  }
+
+  .carousel-nav:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
+  .carousel-prev { left: -8px; }
+  .carousel-next { right: -8px; }
+
+  .carousel-nav:disabled { opacity: 0.22; cursor: default; }
+  .carousel-nav:disabled:hover {
+    background: rgba(5, 8, 13, 0.82);
+    color: var(--blue-bright);
+    border-color: var(--card-border);
+  }
+
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border-radius: 50%;
+    border: none;
+    background: rgba(143, 160, 173, 0.4);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .carousel-dot.active { background: var(--blue-bright); transform: scale(1.4); }
+
+  .carousel-featured .carousel-slide {
+    border-color: var(--blue);
+    background: linear-gradient(180deg, rgba(46, 163, 242, 0.1), var(--card) 45%);
+    box-shadow: 0 0 34px rgba(46, 163, 242, 0.22);
+  }
+
+  .carousel-featured .work-tag {
+    background: linear-gradient(135deg, var(--blue), var(--blue-deep));
+    color: #fff;
+    border: none;
+    font-size: 0.72rem;
+  }
+
+  @media (min-width: 620px) {
+    .carousel-slide { flex-basis: 42%; }
+  }
+
+  @media (min-width: 900px) {
+    .carousel-slide { flex-basis: 27%; }
+    .carousel-prev { left: -20px; }
+    .carousel-next { right: -20px; }
+  }
+
   .lightbox {
     display: none;
     position: fixed;
@@ -506,6 +645,58 @@
     color: #fff;
     cursor: pointer;
     line-height: 1;
+    background: none;
+    border: none;
+    padding: 0;
+    z-index: 2;
+  }
+
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 1px solid rgba(63, 193, 255, 0.35);
+    background: rgba(5, 8, 13, 0.72);
+    color: var(--blue-bright);
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(6px);
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .lightbox-nav:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
+  .lightbox-prev { left: 18px; }
+  .lightbox-next { right: 18px; }
+  .lightbox-nav[hidden] { display: none; }
+
+  .lightbox-counter {
+    position: absolute;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--silver);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    background: rgba(5, 8, 13, 0.7);
+    padding: 5px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--card-border);
+  }
+
+  .lightbox-counter[hidden] { display: none; }
+
+  @media (max-width: 560px) {
+    .lightbox-nav { width: 44px; height: 44px; font-size: 1.6rem; }
+    .lightbox-prev { left: 8px; }
+    .lightbox-next { right: 8px; }
   }
 
   /* ---------- Why us ---------- */
@@ -763,7 +954,7 @@
     <div class="section-head">
       <div class="eyebrow">Portfolio</div>
       <h2>Our Work</h2>
-      <p>Real cars, real results — see the difference for yourself.</p>
+      <p>Real cars, real results &mdash; swipe through each job to see the difference.</p>
     </div>
 
     <div class="work-group">
@@ -771,27 +962,42 @@
         <h3>BMW M3 &mdash; Interior Detail</h3>
         <span>Premium Detail package</span>
       </div>
-      <div class="work-grid">
-        <div class="work-item">
-          <div class="work-thumb"><img src="assets/gallery/m3-cockpit.jpg" alt="BMW M3 cockpit, driver seat and dash detailed" loading="lazy" onclick="openLightbox(this.src)"></div>
-          <p class="work-caption">Full cockpit — seat, dash &amp; wheel detailed.</p>
+      <div class="carousel" data-carousel>
+        <button class="carousel-nav carousel-prev" type="button" aria-label="Previous item">&lsaquo;</button>
+        <div class="carousel-track" tabindex="0" role="group" aria-label="BMW M3 photos">
+          <figure class="carousel-slide">
+            <div class="carousel-media">
+              <img src="assets/gallery/m3-cockpit.jpg" alt="BMW M3 cockpit, driver seat and dash detailed" loading="lazy" onclick="openLightbox(this)">
+            </div>
+            <figcaption class="carousel-caption">Full cockpit &mdash; seat, dash &amp; wheel detailed.</figcaption>
+          </figure>
+          <figure class="carousel-slide">
+            <div class="carousel-media">
+              <img src="assets/gallery/m3-wheel-closeup.jpg" alt="BMW M3 steering wheel and console close-up" loading="lazy" onclick="openLightbox(this)">
+            </div>
+            <figcaption class="carousel-caption">Steering wheel &amp; console &mdash; close-up clean.</figcaption>
+          </figure>
+          <figure class="carousel-slide">
+            <div class="carousel-media">
+              <img src="assets/gallery/m3-console.jpg" alt="BMW M3 center console and carbon trim detailed" loading="lazy" onclick="openLightbox(this)">
+            </div>
+            <figcaption class="carousel-caption">Center console &amp; carbon trim &mdash; dressed and detailed.</figcaption>
+          </figure>
+          <figure class="carousel-slide">
+            <div class="carousel-media">
+              <img src="assets/gallery/m3-rear-seat.jpg" alt="BMW M3 rear seat, red leather cleaned" loading="lazy" onclick="openLightbox(this)">
+            </div>
+            <figcaption class="carousel-caption">Rear seat &mdash; red leather deep cleaned.</figcaption>
+          </figure>
+          <figure class="carousel-slide">
+            <div class="carousel-media">
+              <img src="assets/gallery/m3-full-cabin.jpg" alt="BMW M3 full cabin from driver&rsquo;s door" loading="lazy" onclick="openLightbox(this)">
+            </div>
+            <figcaption class="carousel-caption">Full cabin &mdash; front to back shine.</figcaption>
+          </figure>
         </div>
-        <div class="work-item">
-          <div class="work-thumb"><img src="assets/gallery/m3-wheel-closeup.jpg" alt="BMW M3 steering wheel and console close-up" loading="lazy" onclick="openLightbox(this.src)"></div>
-          <p class="work-caption">Steering wheel &amp; console — close-up clean.</p>
-        </div>
-        <div class="work-item">
-          <div class="work-thumb"><img src="assets/gallery/m3-console.jpg" alt="BMW M3 center console and carbon trim detailed" loading="lazy" onclick="openLightbox(this.src)"></div>
-          <p class="work-caption">Center console &amp; carbon trim — dressed and detailed.</p>
-        </div>
-        <div class="work-item">
-          <div class="work-thumb"><img src="assets/gallery/m3-rear-seat.jpg" alt="BMW M3 rear seat, red leather cleaned" loading="lazy" onclick="openLightbox(this.src)"></div>
-          <p class="work-caption">Rear seat — red leather deep cleaned.</p>
-        </div>
-        <div class="work-item">
-          <div class="work-thumb"><img src="assets/gallery/m3-full-cabin.jpg" alt="BMW M3 full cabin from driver's door" loading="lazy" onclick="openLightbox(this.src)"></div>
-          <p class="work-caption">Full cabin — front to back shine.</p>
-        </div>
+        <button class="carousel-nav carousel-next" type="button" aria-label="Next item">&rsaquo;</button>
+        <div class="carousel-dots"></div>
       </div>
     </div>
 
@@ -800,19 +1006,30 @@
         <h3>BMW i8 &mdash; Full Detail</h3>
         <span>Premium Detail package</span>
       </div>
-      <div class="work-grid">
-        <div class="work-item">
-          <div class="work-thumb"><img src="assets/gallery/i8-cabin.jpg" alt="BMW i8 cabin interior detailed" loading="lazy" onclick="openLightbox(this.src)"></div>
-          <p class="work-caption">Cabin &amp; door trim — cleaned and detailed.</p>
+      <div class="carousel" data-carousel>
+        <button class="carousel-nav carousel-prev" type="button" aria-label="Previous item">&lsaquo;</button>
+        <div class="carousel-track" tabindex="0" role="group" aria-label="BMW i8 photos">
+          <figure class="carousel-slide">
+            <div class="carousel-media">
+              <img src="assets/gallery/i8-cabin.jpg" alt="BMW i8 cabin interior detailed" loading="lazy" onclick="openLightbox(this)">
+            </div>
+            <figcaption class="carousel-caption">Cabin &amp; door trim &mdash; cleaned and detailed.</figcaption>
+          </figure>
+          <figure class="carousel-slide">
+            <div class="carousel-media">
+              <img src="assets/gallery/i8-cockpit.jpg" alt="BMW i8 cockpit and dashboard close-up" loading="lazy" onclick="openLightbox(this)">
+            </div>
+            <figcaption class="carousel-caption">Cockpit close-up &mdash; dash and console detailed.</figcaption>
+          </figure>
+          <figure class="carousel-slide">
+            <div class="carousel-media">
+              <img src="assets/gallery/i8-exterior.jpg" alt="BMW i8 finished exterior with doors open, ready for pickup" loading="lazy" onclick="openLightbox(this)">
+            </div>
+            <figcaption class="carousel-caption">Finished exterior &mdash; washed, shined &amp; ready for pickup.</figcaption>
+          </figure>
         </div>
-        <div class="work-item">
-          <div class="work-thumb"><img src="assets/gallery/i8-cockpit.jpg" alt="BMW i8 cockpit and dashboard close-up" loading="lazy" onclick="openLightbox(this.src)"></div>
-          <p class="work-caption">Cockpit close-up — dash and console detailed.</p>
-        </div>
-        <div class="work-item">
-          <div class="work-thumb"><img src="assets/gallery/i8-exterior.jpg" alt="BMW i8 finished exterior with doors open, ready for pickup" loading="lazy" onclick="openLightbox(this.src)"></div>
-          <p class="work-caption">Finished exterior — washed, shined &amp; ready for pickup.</p>
-        </div>
+        <button class="carousel-nav carousel-next" type="button" aria-label="Next item">&rsaquo;</button>
+        <div class="carousel-dots"></div>
       </div>
     </div>
 
@@ -821,23 +1038,36 @@
         <h3>Audi A4 &mdash; Interior Detail</h3>
         <span>Signature Detail package</span>
       </div>
-      <div class="work-grid">
-        <div class="work-item">
-          <div class="work-thumb"><img src="assets/gallery/audi-dash.jpg" alt="Audi A4 dashboard and steering wheel, cleaned and conditioned" loading="lazy" onclick="openLightbox(this.src)"></div>
-          <p class="work-caption">Dash, wheel &amp; console — wiped down and conditioned.</p>
+      <div class="carousel" data-carousel>
+        <button class="carousel-nav carousel-prev" type="button" aria-label="Previous item">&lsaquo;</button>
+        <div class="carousel-track" tabindex="0" role="group" aria-label="Audi A4 photos">
+          <figure class="carousel-slide">
+            <div class="carousel-media">
+              <img src="assets/gallery/audi-dash.jpg" alt="Audi A4 dashboard and steering wheel, cleaned and conditioned" loading="lazy" onclick="openLightbox(this)">
+            </div>
+            <figcaption class="carousel-caption">Dash, wheel &amp; console &mdash; wiped down and conditioned.</figcaption>
+          </figure>
+          <figure class="carousel-slide">
+            <div class="carousel-media">
+              <img src="assets/gallery/audi-front-seat.jpg" alt="Audi A4 front seat and footwell, vacuumed" loading="lazy" onclick="openLightbox(this)">
+            </div>
+            <figcaption class="carousel-caption">Front seat &amp; footwell &mdash; vacuumed and spotless.</figcaption>
+          </figure>
+          <figure class="carousel-slide">
+            <div class="carousel-media">
+              <img src="assets/gallery/audi-console.jpg" alt="Audi A4 center console and wood trim, dressed" loading="lazy" onclick="openLightbox(this)">
+            </div>
+            <figcaption class="carousel-caption">Center console &amp; wood trim &mdash; dressed and streak-free.</figcaption>
+          </figure>
+          <figure class="carousel-slide">
+            <div class="carousel-media">
+              <img src="assets/gallery/audi-rear-seat.jpg" alt="Audi A4 rear seat, cleaned leather" loading="lazy" onclick="openLightbox(this)">
+            </div>
+            <figcaption class="carousel-caption">Rear seat &mdash; leather cleaned and looking new.</figcaption>
+          </figure>
         </div>
-        <div class="work-item">
-          <div class="work-thumb"><img src="assets/gallery/audi-front-seat.jpg" alt="Audi A4 front seat and footwell, vacuumed" loading="lazy" onclick="openLightbox(this.src)"></div>
-          <p class="work-caption">Front seat &amp; footwell — vacuumed and spotless.</p>
-        </div>
-        <div class="work-item">
-          <div class="work-thumb"><img src="assets/gallery/audi-console.jpg" alt="Audi A4 center console and wood trim, dressed" loading="lazy" onclick="openLightbox(this.src)"></div>
-          <p class="work-caption">Center console &amp; wood trim — dressed and streak-free.</p>
-        </div>
-        <div class="work-item">
-          <div class="work-thumb"><img src="assets/gallery/audi-rear-seat.jpg" alt="Audi A4 rear seat, cleaned leather" loading="lazy" onclick="openLightbox(this.src)"></div>
-          <p class="work-caption">Rear seat — leather cleaned and looking new.</p>
-        </div>
+        <button class="carousel-nav carousel-next" type="button" aria-label="Next item">&rsaquo;</button>
+        <div class="carousel-dots"></div>
       </div>
     </div>
 
@@ -850,37 +1080,48 @@
         <div class="work-item">
           <div class="work-thumb">
             <span class="work-tag">Before</span>
-            <img src="assets/gallery/before-cargo-before.jpg" alt="Cargo area before detailing, covered in dirt and grass clippings" loading="lazy" onclick="openLightbox(this.src)">
+            <img src="assets/gallery/before-cargo-before.jpg" alt="Cargo area before detailing, covered in dirt and grass clippings" loading="lazy" onclick="openLightbox(this)">
           </div>
           <p class="work-caption">Cargo area caked in dirt and grass clippings before service.</p>
         </div>
         <div class="work-item">
           <div class="work-thumb">
             <span class="work-tag">After</span>
-            <img src="assets/gallery/before-cargo-after.jpg" alt="Same cargo area after detailing, fully cleaned" loading="lazy" onclick="openLightbox(this.src)">
+            <img src="assets/gallery/before-cargo-after.jpg" alt="Same cargo area after detailing, fully cleaned" loading="lazy" onclick="openLightbox(this)">
           </div>
-          <p class="work-caption">Same cargo area, fully vacuumed and cleaned — like new.</p>
+          <p class="work-caption">Same cargo area, fully vacuumed and cleaned &mdash; like new.</p>
         </div>
       </div>
       <div class="video-highlight-head">
         <div class="eyebrow-mini">Watch It Happen</div>
-        <h4>🎥 See the Full Transformation</h4>
+        <h4>&#127909; See the Full Transformation</h4>
       </div>
-      <div class="video-highlight-grid">
-        <div class="work-item">
-          <div class="work-thumb video-thumb">
-            <span class="work-tag">▶ Watch</span>
-            <video controls preload="metadata"><source src="assets/gallery/before-after-clip-1.mov"></video>
-          </div>
-          <p class="work-caption">Video walkthrough of the transformation above.</p>
+      <div class="carousel carousel-featured" data-carousel>
+        <button class="carousel-nav carousel-prev" type="button" aria-label="Previous item">&lsaquo;</button>
+        <div class="carousel-track" tabindex="0" role="group" aria-label="Before and after videos">
+          <figure class="carousel-slide">
+            <div class="carousel-media">
+            <span class="work-tag">&#9654; Watch</span>
+              <video controls playsinline preload="none" poster="assets/gallery/before-after-clip-1-poster.jpg">
+                <source src="assets/gallery/before-after-clip-1.mp4" type="video/mp4">
+                Your browser can&rsquo;t play this video.
+              </video>
+            </div>
+            <figcaption class="carousel-caption">Video walkthrough of the transformation above.</figcaption>
+          </figure>
+          <figure class="carousel-slide">
+            <div class="carousel-media">
+            <span class="work-tag">&#9654; Watch</span>
+              <video controls playsinline preload="none" poster="assets/gallery/before-after-clip-2-poster.jpg">
+                <source src="assets/gallery/before-after-clip-2.mp4" type="video/mp4">
+                Your browser can&rsquo;t play this video.
+              </video>
+            </div>
+            <figcaption class="carousel-caption">Full detail session from start to finish.</figcaption>
+          </figure>
         </div>
-        <div class="work-item">
-          <div class="work-thumb video-thumb">
-            <span class="work-tag">▶ Watch</span>
-            <video controls preload="metadata"><source src="assets/gallery/before-after-clip-2.mov"></video>
-          </div>
-          <p class="work-caption">Full detail session from start to finish.</p>
-        </div>
+        <button class="carousel-nav carousel-next" type="button" aria-label="Next item">&rsaquo;</button>
+        <div class="carousel-dots"></div>
       </div>
     </div>
 
@@ -889,21 +1130,32 @@
         <h3>Behind The Scenes</h3>
         <span>A look at the process</span>
       </div>
-      <div class="work-grid">
-        <div class="work-item">
-          <div class="work-thumb video-thumb">
-            <video controls preload="metadata"><source src="assets/gallery/pov-process.mov"></video>
-          </div>
-          <p class="work-caption">POV footage of a detail in progress.</p>
+      <div class="carousel" data-carousel>
+        <button class="carousel-nav carousel-prev" type="button" aria-label="Previous item">&lsaquo;</button>
+        <div class="carousel-track" tabindex="0" role="group" aria-label="Behind the scenes video">
+          <figure class="carousel-slide">
+            <div class="carousel-media">
+              <video controls playsinline preload="none" poster="assets/gallery/pov-process-poster.jpg">
+                <source src="assets/gallery/pov-process.mp4" type="video/mp4">
+                Your browser can&rsquo;t play this video.
+              </video>
+            </div>
+            <figcaption class="carousel-caption">POV footage of a detail in progress.</figcaption>
+          </figure>
         </div>
+        <button class="carousel-nav carousel-next" type="button" aria-label="Next item">&rsaquo;</button>
+        <div class="carousel-dots"></div>
       </div>
     </div>
   </div>
 </section>
 
 <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
-  <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
-  <img id="lightbox-img" src="" alt="Enlarged detailing photo">
+  <button class="lightbox-close" type="button" onclick="closeLightbox(event)" aria-label="Close">&times;</button>
+  <button class="lightbox-nav lightbox-prev" type="button" onclick="lightboxStep(-1)" aria-label="Previous photo">&lsaquo;</button>
+  <img id="lightbox-img" src="" alt="">
+  <button class="lightbox-nav lightbox-next" type="button" onclick="lightboxStep(1)" aria-label="Next photo">&rsaquo;</button>
+  <div class="lightbox-counter" id="lightbox-counter"></div>
 </div>
 
 <section id="why">
@@ -992,9 +1244,44 @@
 <a href="sms:7173448399" class="sticky-call">📞 Call or Text (717) 344-8399</a>
 
 <script>
-  function openLightbox(src) {
-    document.getElementById('lightbox-img').src = src;
+  // Lightbox browses every photo in the same job, so you can step through a
+  // car's whole set without closing and reopening.
+  var lightboxItems = [];
+  var lightboxIndex = 0;
+
+  function openLightbox(el) {
+    var scope = el.closest('.work-group') || document;
+    lightboxItems = Array.prototype.slice.call(
+      scope.querySelectorAll('.carousel-media img, .work-thumb img'));
+    lightboxIndex = Math.max(0, lightboxItems.indexOf(el));
+    renderLightbox();
     document.getElementById('lightbox').classList.add('open');
+  }
+
+  function renderLightbox() {
+    var img = lightboxItems[lightboxIndex];
+    if (!img) return;
+    var target = document.getElementById('lightbox-img');
+    target.src = img.currentSrc || img.src;
+    target.alt = img.alt || '';
+
+    var many = lightboxItems.length > 1;
+    document.querySelector('.lightbox-prev').hidden = !many;
+    document.querySelector('.lightbox-next').hidden = !many;
+
+    var counter = document.getElementById('lightbox-counter');
+    counter.hidden = !many;
+    counter.textContent = (lightboxIndex + 1) + ' / ' + lightboxItems.length;
+
+    // Keep the carousel behind in sync, so closing leaves you where you were.
+    var slide = img.closest('.carousel-slide');
+    if (slide) slide.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  }
+
+  function lightboxStep(delta) {
+    if (lightboxItems.length < 2) return;
+    lightboxIndex = (lightboxIndex + delta + lightboxItems.length) % lightboxItems.length;
+    renderLightbox();
   }
 
   function closeLightbox(e) {
@@ -1002,6 +1289,131 @@
       document.getElementById('lightbox').classList.remove('open');
     }
   }
+  // Swipeable galleries: arrows, dots, keyboard, and native touch scrolling.
+  document.querySelectorAll('[data-carousel]').forEach(function (root) {
+    var track = root.querySelector('.carousel-track');
+    var slides = Array.prototype.slice.call(track.children);
+    var prev = root.querySelector('.carousel-prev');
+    var next = root.querySelector('.carousel-next');
+    var dotsWrap = root.querySelector('.carousel-dots');
+
+    if (slides.length < 2) {
+      if (prev) prev.remove();
+      if (next) next.remove();
+      if (dotsWrap) dotsWrap.remove();
+      return;
+    }
+
+    var dots = [];
+
+    function step() {
+      return slides[1].offsetLeft - slides[0].offsetLeft || track.clientWidth;
+    }
+
+    function maxScroll() {
+      return Math.max(0, track.scrollWidth - track.clientWidth);
+    }
+
+    // How many slides fit at once varies by breakpoint, so the number of
+    // reachable positions does too. Build one dot per position, not per slide.
+    function positions() {
+      return Math.max(1, Math.ceil(maxScroll() / step()) + 1);
+    }
+
+    function buildDots() {
+      var count = positions();
+      dotsWrap.innerHTML = '';
+      dots = [];
+      for (var i = 0; i < count; i++) {
+        (function (n) {
+          var dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = 'carousel-dot';
+          dot.setAttribute('aria-label', 'Go to item ' + (n + 1));
+          dot.addEventListener('click', function () { goTo(n); });
+          dotsWrap.appendChild(dot);
+          dots.push(dot);
+        })(i);
+      }
+    }
+
+    function index() {
+      if (track.scrollLeft >= maxScroll() - 2) return positions() - 1;
+      return Math.min(Math.round(track.scrollLeft / step()), positions() - 1);
+    }
+
+    // At wide breakpoints every slide can already be visible; show the
+    // controls only when there is actually somewhere to scroll.
+    function updateControls() {
+      var scrollable = maxScroll() > 2;
+      track.classList.toggle('is-static', !scrollable);
+      prev.style.display = scrollable ? '' : 'none';
+      next.style.display = scrollable ? '' : 'none';
+      dotsWrap.style.display = scrollable && positions() > 1 ? 'flex' : 'none';
+    }
+
+    function goTo(i) {
+      i = Math.max(0, Math.min(positions() - 1, i));
+      track.scrollTo({ left: Math.min(i * step(), maxScroll()), behavior: 'smooth' });
+    }
+
+    function sync() {
+      var i = index();
+      dots.forEach(function (dot, n) { dot.classList.toggle('active', n === i); });
+      prev.disabled = track.scrollLeft <= 2;
+      next.disabled = track.scrollLeft >= maxScroll() - 2;
+    }
+
+    prev.addEventListener('click', function () { goTo(index() - 1); });
+    next.addEventListener('click', function () { goTo(index() + 1); });
+
+    track.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(index() - 1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); goTo(index() + 1); }
+    });
+
+    var pending;
+    track.addEventListener('scroll', function () {
+      cancelAnimationFrame(pending);
+      pending = requestAnimationFrame(sync);
+    });
+    window.addEventListener('resize', function () { buildDots(); updateControls(); sync(); });
+    buildDots();
+    updateControls();
+    sync();
+  });
+
+  // Only one clip plays at a time.
+  document.addEventListener('play', function (e) {
+    document.querySelectorAll('video').forEach(function (v) {
+      if (v !== e.target) v.pause();
+    });
+  }, true);
+
+  // Esc closes the lightbox; arrow keys step through it.
+  document.addEventListener('keydown', function (e) {
+    var lb = document.getElementById('lightbox');
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') lb.classList.remove('open');
+    if (e.key === 'ArrowLeft') { e.preventDefault(); lightboxStep(-1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); lightboxStep(1); }
+  });
+
+  // Swipe the lightbox on touch devices.
+  (function () {
+    var startX = null;
+    var lb = document.getElementById('lightbox');
+    lb.addEventListener('touchstart', function (e) {
+      startX = e.changedTouches[0].clientX;
+    }, { passive: true });
+    lb.addEventListener('touchend', function (e) {
+      if (startX === null) return;
+      var dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 45) lightboxStep(dx < 0 ? 1 : -1);
+      startX = null;
+    }, { passive: true });
+  })();
+
 </script>
 
 </body>
