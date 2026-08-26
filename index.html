@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shoreline Shine Mobile Detailing | Blue Hill & Surrounding Areas</title>
+<meta name="description" content="Shoreline Shine Mobile Detailing brings professional car detailing to your driveway. Serving Blue Hill & surrounding communities. Call or text (717) 344-8399.">
+<style>
+  :root {
+    --bg: #05080d;
+    --bg-alt: #0a0f17;
+    --card: #11161f;
+    --card-border: rgba(63, 193, 255, 0.18);
+    --blue: #2ea3f2;
+    --blue-bright: #4fc3ff;
+    --blue-deep: #1565a8;
+    --silver: #cfd8e0;
+    --white: #f5f8fa;
+    --muted: #8fa0ad;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Segoe UI', system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  img { max-width: 100%; display: block; }
+
+  .container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- Header ---------- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(5, 8, 13, 0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--card-border);
+  }
+
+  .nav-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 24px;
+    max-width: 1140px;
+    margin: 0 auto;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .brand img {
+    height: 52px;
+    width: 52px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid var(--blue);
+  }
+
+  .brand-text {
+    font-weight: 800;
+    font-size: 1.15rem;
+    letter-spacing: 0.5px;
+  }
+
+  .brand-text span {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  nav ul {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  nav a {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--silver);
+    transition: color 0.2s;
+  }
+
+  nav a:hover { color: var(--blue-bright); }
+
+  .call-btn {
+    background: linear-gradient(135deg, var(--blue), var(--blue-deep));
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    box-shadow: 0 4px 16px rgba(46, 163, 242, 0.35);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .call-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 22px rgba(46, 163, 242, 0.5);
+  }
+
+  .menu-toggle { display: none; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    padding: 90px 24px 110px;
+    text-align: center;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(46, 163, 242, 0.16), transparent 60%),
+      linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%);
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: -20% -10% auto -10%;
+    height: 500px;
+    background: radial-gradient(circle, rgba(46, 163, 242, 0.15), transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-logo {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 0 auto 24px;
+    border: 3px solid var(--blue);
+    box-shadow: 0 0 40px rgba(46, 163, 242, 0.45);
+    position: relative;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.1rem, 5vw, 3.4rem);
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+    background: linear-gradient(135deg, #fff, var(--blue-bright));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hero p.tagline {
+    font-size: 1.15rem;
+    color: var(--silver);
+    max-width: 560px;
+    margin: 0 auto 8px;
+  }
+
+  .hero p.area {
+    font-size: 0.95rem;
+    color: var(--muted);
+    margin-bottom: 34px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+
+  .hero-ctas {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--blue), var(--blue-deep));
+    color: #fff;
+    padding: 16px 34px;
+    border-radius: 40px;
+    font-weight: 800;
+    font-size: 1.05rem;
+    box-shadow: 0 8px 24px rgba(46, 163, 242, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(46, 163, 242, 0.55);
+  }
+
+  .btn-secondary {
+    border: 2px solid var(--card-border);
+    color: var(--silver);
+    padding: 14px 32px;
+    border-radius: 40px;
+    font-weight: 700;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--blue);
+    color: var(--blue-bright);
+  }
+
+  /* ---------- Section shared ---------- */
+  section { padding: 80px 24px; }
+
+  .section-head {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .section-head .eyebrow {
+    color: var(--blue-bright);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .section-head h2 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 900;
+  }
+
+  .section-head p {
+    color: var(--muted);
+    max-width: 560px;
+    margin: 14px auto 0;
+  }
+
+  /* ---------- Services ---------- */
+  .services { background: var(--bg-alt); }
+
+  .plans {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .plan {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 36px 28px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s, border-color 0.25s;
+  }
+
+  .plan:hover {
+    transform: translateY(-6px);
+    border-color: var(--blue);
+  }
+
+  .plan.featured {
+    border-color: var(--blue);
+    background: linear-gradient(180deg, rgba(46, 163, 242, 0.08), var(--card) 40%);
+  }
+
+  .badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, var(--blue), var(--blue-deep));
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+    box-shadow: 0 4px 14px rgba(46, 163, 242, 0.5);
+  }
+
+  .plan h3 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 6px;
+    color: var(--white);
+  }
+
+  .plan .price {
+    text-align: center;
+    font-size: 2.6rem;
+    font-weight: 900;
+    color: var(--blue-bright);
+    margin-bottom: 18px;
+  }
+
+  .plan .price sup {
+    font-size: 1.1rem;
+    vertical-align: super;
+  }
+
+  .plan p.desc {
+    color: var(--silver);
+    font-size: 0.95rem;
+    text-align: center;
+    flex-grow: 1;
+    margin-bottom: 24px;
+  }
+
+  .plan a.btn-primary {
+    text-align: center;
+    padding: 13px 0;
+    font-size: 0.95rem;
+  }
+
+  .fees-note {
+    max-width: 780px;
+    margin: 40px auto 0;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--muted);
+    border-top: 1px solid var(--card-border);
+    padding-top: 24px;
+  }
+
+  /* ---------- Gallery ---------- */
+  .gallery { background: var(--bg-alt); }
+
+  .work-group { max-width: 1100px; margin: 0 auto 64px; }
+  .work-group:last-child { margin-bottom: 0; }
+
+  .work-group-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--card-border);
+  }
+
+  .work-group-head h3 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--white);
+  }
+
+  .work-group-head span {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 18px;
+  }
+
+  .work-item {
+    display: flex;
+    flex-direction: column;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--card-border);
+    background: var(--card);
+    transition: transform 0.25s, border-color 0.25s;
+  }
+
+  .work-item:hover { transform: translateY(-4px); border-color: var(--blue); }
+
+  .work-thumb {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #000;
+  }
+
+  .work-thumb.video-thumb { aspect-ratio: 9 / 16; }
+
+  .work-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.35s;
+  }
+
+  .work-thumb img:hover { transform: scale(1.06); }
+
+  .work-thumb video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #000;
+    display: block;
+  }
+
+  .work-tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(5, 8, 13, 0.75);
+    color: var(--blue-bright);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid rgba(63, 193, 255, 0.35);
+  }
+
+  .work-caption {
+    padding: 12px 14px;
+    font-size: 0.85rem;
+    color: var(--silver);
+    line-height: 1.4;
+  }
+
+  .before-after-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-bottom: 18px;
+  }
+
+  .video-highlight-head {
+    text-align: center;
+    margin: 36px 0 22px;
+  }
+
+  .video-highlight-head .eyebrow-mini {
+    color: var(--blue-bright);
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+    margin-bottom: 6px;
+  }
+
+  .video-highlight-head h4 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--white);
+  }
+
+  .video-highlight-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(220px, 320px));
+    gap: 24px;
+    justify-content: center;
+  }
+
+  .video-highlight-grid .work-item {
+    border-color: var(--blue);
+    background: linear-gradient(180deg, rgba(46, 163, 242, 0.1), var(--card) 45%);
+    box-shadow: 0 0 34px rgba(46, 163, 242, 0.22);
+  }
+
+  .video-highlight-grid .work-tag {
+    background: linear-gradient(135deg, var(--blue), var(--blue-deep));
+    color: #fff;
+    border: none;
+    font-size: 0.72rem;
+  }
+
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    background: rgba(0,0,0,0.9);
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+  }
+
+  .lightbox.open { display: flex; }
+
+  .lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 60px rgba(46, 163, 242, 0.3);
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 28px;
+    font-size: 2rem;
+    color: #fff;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  /* ---------- Why us ---------- */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .why-item {
+    text-align: center;
+    padding: 20px;
+  }
+
+  .why-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(46, 163, 242, 0.25), rgba(46, 163, 242, 0.05));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    border: 1px solid var(--card-border);
+  }
+
+  .why-item h3 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: var(--white);
+  }
+
+  .why-item p {
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+
+  /* ---------- CTA band ---------- */
+  .cta-band {
+    background: linear-gradient(135deg, var(--blue-deep), var(--blue));
+    text-align: center;
+    padding: 60px 24px;
+  }
+
+  .cta-band h2 {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 900;
+    margin-bottom: 12px;
+    color: #fff;
+  }
+
+  .cta-band p {
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 26px;
+  }
+
+  .cta-band .btn-primary {
+    background: #fff;
+    color: var(--blue-deep);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  }
+
+  .cta-band .btn-primary:hover {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  }
+
+  /* ---------- Contact ---------- */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    align-items: center;
+  }
+
+  .contact-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 34px;
+  }
+
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 22px;
+  }
+
+  .contact-row:last-child { margin-bottom: 0; }
+
+  .contact-icon {
+    width: 46px;
+    height: 46px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: rgba(46, 163, 242, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+  }
+
+  .contact-row h4 {
+    font-size: 0.95rem;
+    color: var(--muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+  }
+
+  .contact-row p, .contact-row a {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .contact-side img {
+    border-radius: 50%;
+    border: 3px solid var(--blue);
+    box-shadow: 0 0 50px rgba(46, 163, 242, 0.4);
+    margin: 0 auto;
+    max-width: 260px;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    background: var(--bg-alt);
+    border-top: 1px solid var(--card-border);
+    padding: 34px 24px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  footer strong { color: var(--silver); }
+
+  /* ---------- Sticky mobile call bar ---------- */
+  .sticky-call {
+    display: none;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 860px) {
+    nav { display: none; }
+    .menu-toggle { display: none; }
+    .plans { grid-template-columns: 1fr; }
+    .before-after-pair { grid-template-columns: 1fr; }
+    .video-highlight-grid { grid-template-columns: minmax(220px, 340px); }
+    .why-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .contact-side { order: -1; }
+    .contact-side img { max-width: 180px; }
+    body { padding-bottom: 70px; }
+
+    .sticky-call {
+      display: flex;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      background: linear-gradient(135deg, var(--blue), var(--blue-deep));
+      color: #fff;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: 14px;
+      font-weight: 800;
+      font-size: 1rem;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.4);
+    }
+  }
+
+  @media (max-width: 500px) {
+    .nav-wrap .call-btn { display: none; }
+    .brand-text { font-size: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a href="#top" class="brand">
+      <img src="assets/logo.png" alt="Shoreline Shine Mobile Detailing logo">
+      <div class="brand-text">Shoreline Shine<span>Mobile Detailing</span></div>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#gallery">Our Work</a></li>
+        <li><a href="#why">Why Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <a href="sms:7173448399" class="call-btn">Call/Text (717) 344-8399</a>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <img src="assets/logo.png" alt="Shoreline Shine logo" class="hero-logo">
+  <h1>Mobile Detailing That Comes To You</h1>
+  <p class="tagline">Professional hand wash, wax, and deep-clean detailing — done right in your driveway.</p>
+  <p class="area">Proudly Serving Blue Hill &amp; Surrounding Communities</p>
+  <div class="hero-ctas">
+    <a href="sms:7173448399" class="btn-primary">Call or Text (717) 344-8399</a>
+    <a href="#services" class="btn-secondary">View Packages</a>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Packages</div>
+      <h2>Detailing Packages &amp; Pricing</h2>
+      <p>Pick the level of shine your vehicle needs — we bring everything to you.</p>
+    </div>
+
+    <div class="plans">
+      <div class="plan">
+        <h3>Essential Wash</h3>
+        <div class="price"><sup>$</sup>80</div>
+        <p class="desc">A full exterior hand wash, wheel cleaning, and tire shine, plus a vacuum of the mats and floor area and a wipe-down of the steering wheel, shifter, and screen. This is the quick, affordable option for keeping your car looking clean day to day — perfect if you just need the dirt and grime gone without a deep clean underneath.</p>
+        <a href="sms:7173448399" class="btn-primary">Book This Package</a>
+      </div>
+
+      <div class="plan featured">
+        <div class="badge">Most Popular</div>
+        <h3>Signature Detail</h3>
+        <div class="price"><sup>$</sup>180</div>
+        <p class="desc">A complete inside-and-out clean: exterior wash, wheel cleaning, spray-on wax, tire shine, and streak-free glass outside; a full vacuum and hand-wipe of every surface inside — console, cup holders, screens, seats, dash, door jambs, panels, pedals, and mats — with trim dressing wherever it's needed. This is the package for anyone who wants their car to actually feel new again, not just look wiped down.</p>
+        <a href="sms:7173448399" class="btn-primary">Book This Package</a>
+      </div>
+
+      <div class="plan">
+        <h3>Premium Detail</h3>
+        <div class="price"><sup>$</sup>260</div>
+        <p class="desc">Our most thorough service, built for cars that need real restoration. On top of a full exterior wash and complete interior clean, we spot-treat visible stains in the carpets, seats, and mats, clean built-up dirt off the doors, bugs from the bumper, dress the trim inside and out, and finish with a clay bar treatment for paint that's smooth to the touch, not just clean. This is the level of care for anyone who wants their car looking and feeling its absolute best, not just clean.</p>
+        <a href="sms:7173448399" class="btn-primary">Book This Package</a>
+      </div>
+    </div>
+
+    <p class="fees-note">Vehicles with heavy pet hair may require an additional charge. SUVs will incur a $20 surcharge. Any applicable fees will be communicated prior to service.</p>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Portfolio</div>
+      <h2>Our Work</h2>
+      <p>Real cars, real results — see the difference for yourself.</p>
+    </div>
+
+    <div class="work-group">
+      <div class="work-group-head">
+        <h3>BMW M3 &mdash; Interior Detail</h3>
+        <span>Premium Detail package</span>
+      </div>
+      <div class="work-grid">
+        <div class="work-item">
+          <div class="work-thumb"><img src="assets/gallery/m3-cockpit.jpg" alt="BMW M3 cockpit, driver seat and dash detailed" loading="lazy" onclick="openLightbox(this.src)"></div>
+          <p class="work-caption">Full cockpit — seat, dash &amp; wheel detailed.</p>
+        </div>
+        <div class="work-item">
+          <div class="work-thumb"><img src="assets/gallery/m3-wheel-closeup.jpg" alt="BMW M3 steering wheel and console close-up" loading="lazy" onclick="openLightbox(this.src)"></div>
+          <p class="work-caption">Steering wheel &amp; console — close-up clean.</p>
+        </div>
+        <div class="work-item">
+          <div class="work-thumb"><img src="assets/gallery/m3-console.jpg" alt="BMW M3 center console and carbon trim detailed" loading="lazy" onclick="openLightbox(this.src)"></div>
+          <p class="work-caption">Center console &amp; carbon trim — dressed and detailed.</p>
+        </div>
+        <div class="work-item">
+          <div class="work-thumb"><img src="assets/gallery/m3-rear-seat.jpg" alt="BMW M3 rear seat, red leather cleaned" loading="lazy" onclick="openLightbox(this.src)"></div>
+          <p class="work-caption">Rear seat — red leather deep cleaned.</p>
+        </div>
+        <div class="work-item">
+          <div class="work-thumb"><img src="assets/gallery/m3-full-cabin.jpg" alt="BMW M3 full cabin from driver's door" loading="lazy" onclick="openLightbox(this.src)"></div>
+          <p class="work-caption">Full cabin — front to back shine.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-group">
+      <div class="work-group-head">
+        <h3>BMW i8 &mdash; Full Detail</h3>
+        <span>Premium Detail package</span>
+      </div>
+      <div class="work-grid">
+        <div class="work-item">
+          <div class="work-thumb"><img src="assets/gallery/i8-cabin.jpg" alt="BMW i8 cabin interior detailed" loading="lazy" onclick="openLightbox(this.src)"></div>
+          <p class="work-caption">Cabin &amp; door trim — cleaned and detailed.</p>
+        </div>
+        <div class="work-item">
+          <div class="work-thumb"><img src="assets/gallery/i8-cockpit.jpg" alt="BMW i8 cockpit and dashboard close-up" loading="lazy" onclick="openLightbox(this.src)"></div>
+          <p class="work-caption">Cockpit close-up — dash and console detailed.</p>
+        </div>
+        <div class="work-item">
+          <div class="work-thumb"><img src="assets/gallery/i8-exterior.jpg" alt="BMW i8 finished exterior with doors open, ready for pickup" loading="lazy" onclick="openLightbox(this.src)"></div>
+          <p class="work-caption">Finished exterior — washed, shined &amp; ready for pickup.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-group">
+      <div class="work-group-head">
+        <h3>Audi A4 &mdash; Interior Detail</h3>
+        <span>Signature Detail package</span>
+      </div>
+      <div class="work-grid">
+        <div class="work-item">
+          <div class="work-thumb"><img src="assets/gallery/audi-dash.jpg" alt="Audi A4 dashboard and steering wheel, cleaned and conditioned" loading="lazy" onclick="openLightbox(this.src)"></div>
+          <p class="work-caption">Dash, wheel &amp; console — wiped down and conditioned.</p>
+        </div>
+        <div class="work-item">
+          <div class="work-thumb"><img src="assets/gallery/audi-front-seat.jpg" alt="Audi A4 front seat and footwell, vacuumed" loading="lazy" onclick="openLightbox(this.src)"></div>
+          <p class="work-caption">Front seat &amp; footwell — vacuumed and spotless.</p>
+        </div>
+        <div class="work-item">
+          <div class="work-thumb"><img src="assets/gallery/audi-console.jpg" alt="Audi A4 center console and wood trim, dressed" loading="lazy" onclick="openLightbox(this.src)"></div>
+          <p class="work-caption">Center console &amp; wood trim — dressed and streak-free.</p>
+        </div>
+        <div class="work-item">
+          <div class="work-thumb"><img src="assets/gallery/audi-rear-seat.jpg" alt="Audi A4 rear seat, cleaned leather" loading="lazy" onclick="openLightbox(this.src)"></div>
+          <p class="work-caption">Rear seat — leather cleaned and looking new.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-group">
+      <div class="work-group-head">
+        <h3>Before &amp; After</h3>
+        <span>Same trunk, one full detail later</span>
+      </div>
+      <div class="before-after-pair">
+        <div class="work-item">
+          <div class="work-thumb">
+            <span class="work-tag">Before</span>
+            <img src="assets/gallery/before-cargo-before.jpg" alt="Cargo area before detailing, covered in dirt and grass clippings" loading="lazy" onclick="openLightbox(this.src)">
+          </div>
+          <p class="work-caption">Cargo area caked in dirt and grass clippings before service.</p>
+        </div>
+        <div class="work-item">
+          <div class="work-thumb">
+            <span class="work-tag">After</span>
+            <img src="assets/gallery/before-cargo-after.jpg" alt="Same cargo area after detailing, fully cleaned" loading="lazy" onclick="openLightbox(this.src)">
+          </div>
+          <p class="work-caption">Same cargo area, fully vacuumed and cleaned — like new.</p>
+        </div>
+      </div>
+      <div class="video-highlight-head">
+        <div class="eyebrow-mini">Watch It Happen</div>
+        <h4>🎥 See the Full Transformation</h4>
+      </div>
+      <div class="video-highlight-grid">
+        <div class="work-item">
+          <div class="work-thumb video-thumb">
+            <span class="work-tag">▶ Watch</span>
+            <video controls preload="metadata"><source src="assets/gallery/before-after-clip-1.mov"></video>
+          </div>
+          <p class="work-caption">Video walkthrough of the transformation above.</p>
+        </div>
+        <div class="work-item">
+          <div class="work-thumb video-thumb">
+            <span class="work-tag">▶ Watch</span>
+            <video controls preload="metadata"><source src="assets/gallery/before-after-clip-2.mov"></video>
+          </div>
+          <p class="work-caption">Full detail session from start to finish.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-group">
+      <div class="work-group-head">
+        <h3>Behind The Scenes</h3>
+        <span>A look at the process</span>
+      </div>
+      <div class="work-grid">
+        <div class="work-item">
+          <div class="work-thumb video-thumb">
+            <video controls preload="metadata"><source src="assets/gallery/pov-process.mov"></video>
+          </div>
+          <p class="work-caption">POV footage of a detail in progress.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
+  <img id="lightbox-img" src="" alt="Enlarged detailing photo">
+</div>
+
+<section id="why">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Why Shoreline Shine</div>
+      <h2>Convenience Meets Quality</h2>
+      <p>We bring the shine to you — no drop-off, no waiting rooms, no wasted time.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-icon">🚐</div>
+        <h3>We Come To You</h3>
+        <p>Home, office, or curbside — we bring all the equipment needed. We just ask for access to a hose spigot for water and an outlet for power at the service location.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">✨</div>
+        <h3>Detail-Obsessed</h3>
+        <p>Every package is built around the small details that make a vehicle look genuinely restored, not just wiped down.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">📅</div>
+        <h3>Easy Booking</h3>
+        <p>Just call or text to grab a time that works for you — no complicated forms or apps.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <h2>Ready for Your Car to Shine?</h2>
+  <p>Call or text now to schedule your mobile detail.</p>
+  <a href="sms:7173448399" class="btn-primary">Call or Text (717) 344-8399</a>
+</div>
+
+<section id="contact">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Get In Touch</div>
+      <h2>Book Your Detail</h2>
+      <p>Reach out by phone or text — we'll confirm your appointment and head your way.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-row">
+          <div class="contact-icon">📞</div>
+          <div>
+            <h4>Call or Text</h4>
+            <a href="sms:7173448399">(717) 344-8399</a>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">📍</div>
+          <div>
+            <h4>Service Area</h4>
+            <p>Blue Hill &amp; Surrounding Communities</p>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">🕒</div>
+          <div>
+            <h4>Availability</h4>
+            <p>Call or text to check current openings</p>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">💧</div>
+          <div>
+            <h4>What We Need On-Site</h4>
+            <p>Access to a hose spigot (water) and an outdoor outlet (power)</p>
+          </div>
+        </div>
+      </div>
+      <div class="contact-side">
+        <img src="assets/logo.png" alt="Shoreline Shine Mobile Detailing">
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p><strong>Shoreline Shine Mobile Detailing</strong> &mdash; Blue Hill &amp; Surrounding Communities</p>
+  <p>&copy; 2026 Shoreline Shine. Call or text (717) 344-8399 to book.</p>
+</footer>
+
+<a href="sms:7173448399" class="sticky-call">📞 Call or Text (717) 344-8399</a>
+
+<script>
+  function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+  }
+
+  function closeLightbox(e) {
+    if (e.target.id === 'lightbox' || e.target.classList.contains('lightbox-close')) {
+      document.getElementById('lightbox').classList.remove('open');
+    }
+  }
+</script>
+
+</body>
+</html>
