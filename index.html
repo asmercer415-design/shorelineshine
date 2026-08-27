@@ -1499,7 +1499,7 @@
           <figure class="carousel-slide">
             <div class="carousel-media">
             <span class="work-tag">&#9654; Watch</span>
-              <video controls playsinline preload="none" poster="assets/gallery/before-after-clip-1-poster.jpg">
+              <video controls preload="none" poster="assets/gallery/before-after-clip-1-poster.jpg">
                 <source src="assets/gallery/before-after-clip-1.mp4" type="video/mp4">
                 Your browser can&rsquo;t play this video.
               </video>
@@ -1509,7 +1509,7 @@
           <figure class="carousel-slide">
             <div class="carousel-media">
             <span class="work-tag">&#9654; Watch</span>
-              <video controls playsinline preload="none" poster="assets/gallery/before-after-clip-2-poster.jpg">
+              <video controls preload="none" poster="assets/gallery/before-after-clip-2-poster.jpg">
                 <source src="assets/gallery/before-after-clip-2.mp4" type="video/mp4">
                 Your browser can&rsquo;t play this video.
               </video>
@@ -1532,7 +1532,7 @@
         <div class="carousel-track" tabindex="0" role="group" aria-label="Behind the scenes video">
           <figure class="carousel-slide">
             <div class="carousel-media">
-              <video controls playsinline preload="none" poster="assets/gallery/pov-process-poster.jpg">
+              <video controls preload="none" poster="assets/gallery/pov-process-poster.jpg">
                 <source src="assets/gallery/pov-process.mp4" type="video/mp4">
                 Your browser can&rsquo;t play this video.
               </video>
@@ -1882,7 +1882,44 @@
     document.querySelectorAll('video').forEach(function (v) {
       if (v !== e.target) v.pause();
     });
+    goFullscreen(e.target);
   }, true);
+
+  // Fullscreen on play. Desktop and Android use the Fullscreen API; iPhone
+  // exposes only webkitEnterFullscreen on the video element itself.
+  function goFullscreen(v) {
+    if (!v || v.tagName !== 'VIDEO') return;
+    if (document.fullscreenElement || document.webkitFullscreenElement) return;
+
+    var request = v.requestFullscreen || v.webkitRequestFullscreen ||
+      v.mozRequestFullScreen || v.msRequestFullscreen;
+
+    if (request) {
+      try {
+        var result = request.call(v);
+        if (result && typeof result.catch === 'function') {
+          result.catch(function () { iosFullscreen(v); });
+        }
+      } catch (err) {
+        iosFullscreen(v);
+      }
+      return;
+    }
+    iosFullscreen(v);
+  }
+
+  function iosFullscreen(v) {
+    if (!v.webkitEnterFullscreen) return;
+    // Throws if metadata has not loaded yet, which is likely with preload="none".
+    if (v.readyState >= 1) {
+      try { v.webkitEnterFullscreen(); } catch (err) {}
+    } else {
+      v.addEventListener('loadedmetadata', function once() {
+        v.removeEventListener('loadedmetadata', once);
+        try { v.webkitEnterFullscreen(); } catch (err) {}
+      });
+    }
+  }
 
   // Esc closes the lightbox; arrow keys step through it.
   document.addEventListener('keydown', function (e) {
