@@ -997,30 +997,6 @@
     margin-bottom: 16px;
   }
 
-  .booking-preview {
-    background: var(--card);
-    border: 1px solid var(--card-border);
-    border-radius: 12px;
-    padding: 13px 15px;
-    margin-bottom: 18px;
-  }
-
-  .booking-preview span {
-    display: block;
-    font-size: 0.7rem;
-    font-weight: 800;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 5px;
-  }
-
-  .booking-preview p {
-    font-size: 0.9rem;
-    color: var(--silver);
-    line-height: 1.5;
-  }
-
   .booking-submit {
     display: block;
     width: 100%;
@@ -1700,11 +1676,6 @@
 
       <p class="booking-error" id="booking-error" hidden></p>
 
-      <div class="booking-preview" id="booking-preview" hidden>
-        <span>Your message</span>
-        <p id="booking-preview-text"></p>
-      </div>
-
       <button type="submit" class="btn-primary booking-submit">Book Now</button>
       <p class="booking-note">Opens your Messages app with the details filled in &mdash; just hit send.</p>
     </form>
@@ -1891,7 +1862,6 @@
     if (pkg) selectChoice('package', pkg);
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
-    updatePreview();
     var first = modal.querySelector(pkg ? '[data-group="vehicle"] .choice' : '.choice');
     if (first) first.focus({ preventScroll: true });
   }
@@ -1917,7 +1887,6 @@
       var btn = e.target.closest('.choice');
       if (!btn) return;
       selectChoice(wrap.getAttribute('data-group'), btn.getAttribute('data-value'));
-      updatePreview();
     });
   });
 
@@ -1928,11 +1897,6 @@
     var other = brandSelect.value === 'Other';
     brandOther.hidden = !other;
     if (other) brandOther.focus();
-    updatePreview();
-  });
-
-  ['brand-other', 'first-name', 'last-name', 'cust-address'].forEach(function (id) {
-    document.getElementById(id).addEventListener('input', updatePreview);
   });
 
   function chosenBrand() {
@@ -1956,16 +1920,6 @@
   // "sedan" and "truck" read better lowercase; SUV is an acronym.
   function vehicleWord() {
     return picked.vehicle === 'SUV' ? 'SUV' : picked.vehicle.toLowerCase();
-  }
-
-  function updatePreview() {
-    var box = document.getElementById('booking-preview');
-    var ready = picked.package && picked.vehicle && chosenBrand() &&
-      document.getElementById('first-name').value.trim() &&
-      document.getElementById('last-name').value.trim() &&
-      document.getElementById('cust-address').value.trim();
-    box.hidden = !ready;
-    if (ready) document.getElementById('booking-preview-text').textContent = buildMessage();
   }
 
   function showError(msg) {
