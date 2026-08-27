@@ -214,6 +214,8 @@
     flex-wrap: wrap;
   }
 
+  .hero-work-btn { display: none; }
+
   .btn-primary {
     border: none;
     cursor: pointer;
@@ -1214,6 +1216,10 @@
   @media (max-width: 860px) {
     nav { display: none; }
     .menu-toggle { display: none; }
+    .hero-work-btn { display: inline-block; }
+    .hero-ctas { flex-direction: column; align-items: stretch; }
+    .hero-ctas .btn-primary,
+    .hero-ctas .btn-secondary { text-align: center; }
     .plans { grid-template-columns: 1fr; }
     .before-after-pair { grid-template-columns: 1fr; }
     .video-highlight-grid { grid-template-columns: minmax(220px, 340px); }
@@ -1276,6 +1282,7 @@
   <div class="hero-ctas">
     <button type="button" class="btn-primary" onclick="openBooking()">Book an Appointment</button>
     <a href="#services" class="btn-secondary">View Packages</a>
+    <a href="#gallery" class="btn-secondary hero-work-btn">Our Work</a>
   </div>
 </section>
 
