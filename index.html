@@ -383,14 +383,53 @@
   }
 
   .payment-list li {
+    display: flex;
+    align-items: center;
+    gap: 9px;
     background: var(--card);
     border: 1px solid var(--card-border);
     color: var(--silver);
     font-size: 0.88rem;
     font-weight: 600;
-    padding: 9px 18px;
+    padding: 8px 18px 8px 12px;
     border-radius: 30px;
   }
+
+  /* Brand marks are drawn here in the brands' own colours rather than
+     copied logo files. */
+  .pay-mark {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .pay-cash {
+    background: rgba(52, 199, 89, 0.16);
+    border: 1px solid rgba(52, 199, 89, 0.42);
+    color: #4ade80;
+    font-size: 0.9rem;
+  }
+
+  .pay-check {
+    background: rgba(46, 163, 242, 0.15);
+    border: 1px solid var(--card-border);
+    color: var(--blue-bright);
+    font-size: 0.85rem;
+  }
+
+  .pay-venmo  { background: #008CFF; font-style: italic; }
+  .pay-paypal { background: #003087; }
+  .pay-paypal span { color: #009cde; margin-left: -3px; }
+  .pay-apple  { background: #000; border: 1px solid rgba(255,255,255,0.25); }
+  .pay-apple svg { width: 12px; height: 12px; fill: #fff; display: block; }
 
   .fees-note {
     max-width: 780px;
@@ -1013,11 +1052,11 @@
       <h3>Payment Methods</h3>
       <p>Pay however is easiest for you &mdash; due once the detail is finished.</p>
       <ul class="payment-list">
-        <li>Cash</li>
-        <li>Check</li>
-        <li>Venmo</li>
-        <li>PayPal</li>
-        <li>Apple Cash</li>
+        <li><span class="pay-mark pay-cash" aria-hidden="true">$</span>Cash</li>
+        <li><span class="pay-mark pay-check" aria-hidden="true">&#10004;</span>Check</li>
+        <li><span class="pay-mark pay-venmo" aria-hidden="true">V</span>Venmo</li>
+        <li><span class="pay-mark pay-paypal" aria-hidden="true">P<span>P</span></span>PayPal</li>
+        <li><span class="pay-mark pay-apple" aria-hidden="true"><svg viewBox="0 0 384 512" aria-hidden="true" focusable="false"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg></span>Apple Cash</li>
       </ul>
     </div>
 
