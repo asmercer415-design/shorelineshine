@@ -981,6 +981,12 @@
 
   #brand-other { margin-top: 10px; }
 
+  .name-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
   .booking-error {
     background: rgba(255, 86, 86, 0.12);
     border: 1px solid rgba(255, 86, 86, 0.4);
@@ -1041,6 +1047,7 @@
       padding: 26px 18px 34px;
     }
     .choice-grid { grid-template-columns: 1fr; }
+    .name-grid { grid-template-columns: 1fr; }
     .choice { display: flex; justify-content: space-between; align-items: center; }
     .choice .choice-meta { margin-top: 0; }
   }
@@ -1677,8 +1684,12 @@
 
       <fieldset class="field">
         <legend>Your name</legend>
-        <label class="sr-only" for="cust-name">Your name</label>
-        <input type="text" id="cust-name" placeholder="First and last name" autocomplete="name">
+        <div class="name-grid">
+          <label class="sr-only" for="first-name">First name</label>
+          <input type="text" id="first-name" placeholder="First name" autocomplete="given-name">
+          <label class="sr-only" for="last-name">Last name</label>
+          <input type="text" id="last-name" placeholder="Last name" autocomplete="family-name">
+        </div>
       </fieldset>
 
       <fieldset class="field">
@@ -1920,7 +1931,7 @@
     updatePreview();
   });
 
-  ['brand-other', 'cust-name', 'cust-address'].forEach(function (id) {
+  ['brand-other', 'first-name', 'last-name', 'cust-address'].forEach(function (id) {
     document.getElementById(id).addEventListener('input', updatePreview);
   });
 
@@ -1929,18 +1940,17 @@
     return brandSelect.value;
   }
 
-  // "a Toyota" but "an Audi"
-  function article(word) {
-    return /^[aeiou]/i.test(word || '') ? 'an' : 'a';
+  function fullName() {
+    var first = document.getElementById('first-name').value.trim();
+    var last = document.getElementById('last-name').value.trim();
+    return (first + ' ' + last).trim();
   }
 
   function buildMessage() {
-    var name = document.getElementById('cust-name').value.trim();
     var address = document.getElementById('cust-address').value.trim();
-    var brand = chosenBrand();
-    return 'Hey my name is ' + name + ' and I want the ' + picked.package +
-      ' package. I have ' + article(brand) + ' ' + brand + ' ' +
-      vehicleWord() + " and I'd like it done at " + address + '.';
+    return 'Hi, my name is ' + fullName() + '. I would like to book the ' +
+      picked.package + ' package for my ' + chosenBrand() + ' ' + vehicleWord() +
+      ' at ' + address + '. Please let me know what times you have available. Thank you!';
   }
 
   // "sedan" and "truck" read better lowercase; SUV is an acronym.
@@ -1951,7 +1961,8 @@
   function updatePreview() {
     var box = document.getElementById('booking-preview');
     var ready = picked.package && picked.vehicle && chosenBrand() &&
-      document.getElementById('cust-name').value.trim() &&
+      document.getElementById('first-name').value.trim() &&
+      document.getElementById('last-name').value.trim() &&
       document.getElementById('cust-address').value.trim();
     box.hidden = !ready;
     if (ready) document.getElementById('booking-preview-text').textContent = buildMessage();
@@ -1971,7 +1982,8 @@
     if (!picked.package) return showError('Please choose a package.');
     if (!picked.vehicle) return showError('Please choose your vehicle type.');
     if (!chosenBrand()) return showError('Please tell us your vehicle brand.');
-    if (!document.getElementById('cust-name').value.trim()) return showError('Please enter your name.');
+    if (!document.getElementById('first-name').value.trim()) return showError('Please enter your first name.');
+    if (!document.getElementById('last-name').value.trim()) return showError('Please enter your last name.');
     if (!document.getElementById('cust-address').value.trim()) return showError('Please enter the address.');
 
     var body = encodeURIComponent(buildMessage());
