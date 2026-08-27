@@ -129,6 +129,9 @@
   nav a:hover { color: var(--blue-bright); }
 
   .call-btn {
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
     background: linear-gradient(135deg, var(--blue), var(--blue-deep));
     color: #fff;
     padding: 10px 20px;
@@ -212,6 +215,9 @@
   }
 
   .btn-primary {
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
     background: linear-gradient(135deg, var(--blue), var(--blue-deep));
     color: #fff;
     padding: 16px 34px;
@@ -346,7 +352,7 @@
     margin-bottom: 24px;
   }
 
-  .plan a.btn-primary {
+  .plan .btn-primary {
     text-align: center;
     padding: 13px 0;
     font-size: 0.95rem;
@@ -802,6 +808,243 @@
     .lightbox-next { right: 8px; }
   }
 
+  /* ---------- Booking ---------- */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .booking {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 400;
+    background: rgba(0, 0, 0, 0.82);
+    padding: 20px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .booking.open { display: block; }
+
+  .booking-panel {
+    position: relative;
+    max-width: 560px;
+    margin: 30px auto;
+    background: var(--bg-alt);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 30px 26px 26px;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6);
+  }
+
+  .booking-close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--card-border);
+    background: var(--card);
+    color: var(--silver);
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .booking-close:hover { color: #fff; border-color: var(--blue); }
+
+  .booking-panel h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--white);
+    padding-right: 40px;
+  }
+
+  .booking-sub {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin: 6px 0 22px;
+  }
+
+  .field { border: none; margin-bottom: 22px; }
+
+  .field legend {
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--blue-bright);
+    margin-bottom: 10px;
+    padding: 0;
+  }
+
+  .choice-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .choice {
+    position: relative;
+    text-align: left;
+    padding: 13px 12px;
+    border-radius: 12px;
+    border: 2px solid var(--card-border);
+    background: var(--card);
+    color: var(--silver);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1.3;
+    transition: border-color 0.18s, background 0.18s, color 0.18s;
+  }
+
+  .choice:hover { border-color: rgba(46, 163, 242, 0.6); }
+
+  .choice .choice-meta {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--muted);
+    margin-top: 3px;
+  }
+
+  .choice.selected {
+    border-color: var(--blue);
+    background: rgba(46, 163, 242, 0.13);
+    color: #fff;
+  }
+
+  .choice.selected .choice-meta { color: var(--blue-bright); }
+
+  /* Checkmark badge on the selected box */
+  .choice.selected::after {
+    content: "\2713";
+    position: absolute;
+    top: -9px;
+    right: -9px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--blue);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 3px var(--bg-alt);
+  }
+
+  .booking input[type="text"],
+  .booking select {
+    width: 100%;
+    padding: 13px 14px;
+    border-radius: 12px;
+    border: 2px solid var(--card-border);
+    background: var(--card);
+    color: var(--white);
+    font-family: inherit;
+    font-size: 1rem;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .booking select {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath fill='%238fa0ad' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 12px;
+    padding-right: 38px;
+  }
+
+  .booking input[type="text"]:focus,
+  .booking select:focus {
+    outline: none;
+    border-color: var(--blue);
+  }
+
+  .booking input::placeholder { color: #64747f; }
+
+  #brand-other { margin-top: 10px; }
+
+  .booking-error {
+    background: rgba(255, 86, 86, 0.12);
+    border: 1px solid rgba(255, 86, 86, 0.4);
+    color: #ff9d9d;
+    font-size: 0.88rem;
+    padding: 11px 14px;
+    border-radius: 10px;
+    margin-bottom: 16px;
+  }
+
+  .booking-preview {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 13px 15px;
+    margin-bottom: 18px;
+  }
+
+  .booking-preview span {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 5px;
+  }
+
+  .booking-preview p {
+    font-size: 0.9rem;
+    color: var(--silver);
+    line-height: 1.5;
+  }
+
+  .booking-submit {
+    display: block;
+    width: 100%;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .booking-note {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 12px;
+  }
+
+  @media (max-width: 560px) {
+    .booking { padding: 0; }
+    .booking-panel {
+      margin: 0;
+      min-height: 100%;
+      border-radius: 0;
+      border: none;
+      padding: 26px 18px 34px;
+    }
+    .choice-grid { grid-template-columns: 1fr; }
+    .choice { display: flex; justify-content: space-between; align-items: center; }
+    .choice .choice-meta { margin-top: 0; }
+  }
+
   /* ---------- Why us ---------- */
   .why-grid {
     display: grid;
@@ -1001,7 +1244,7 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
-    <a href="sms:7173448399" class="call-btn">Call/Text (717) 344-8399</a>
+    <button type="button" class="call-btn" onclick="openBooking()">Book an Appointment</button>
   </div>
 </header>
 
@@ -1011,7 +1254,7 @@
   <p class="tagline">Professional hand wash, wax, and deep-clean detailing — done right in your driveway.</p>
   <p class="area">Proudly Serving Blue Hill &amp; Surrounding Communities</p>
   <div class="hero-ctas">
-    <a href="sms:7173448399" class="btn-primary">Call or Text (717) 344-8399</a>
+    <button type="button" class="btn-primary" onclick="openBooking()">Book an Appointment</button>
     <a href="#services" class="btn-secondary">View Packages</a>
   </div>
 </section>
@@ -1029,7 +1272,7 @@
         <h3>Essential Wash</h3>
         <div class="price"><sup>$</sup>80</div>
         <p class="desc">A full exterior hand wash, wheel cleaning, and tire shine, plus a vacuum of the mats and floor area and a wipe-down of the steering wheel, shifter, and screen. This is the quick, affordable option for keeping your car looking clean day to day — perfect if you just need the dirt and grime gone without a deep clean underneath.</p>
-        <a href="sms:7173448399" class="btn-primary">Book This Package</a>
+        <button type="button" class="btn-primary" onclick="openBooking('Essential Wash')">Book This Package</button>
       </div>
 
       <div class="plan featured">
@@ -1037,14 +1280,14 @@
         <h3>Signature Detail</h3>
         <div class="price"><sup>$</sup>180</div>
         <p class="desc">A complete inside-and-out clean: exterior wash, wheel cleaning, spray-on wax, tire shine, and streak-free glass outside; a full vacuum and hand-wipe of every surface inside — console, cup holders, screens, seats, dash, door jambs, panels, pedals, and mats — with trim dressing wherever it's needed. This is the package for anyone who wants their car to actually feel new again, not just look wiped down.</p>
-        <a href="sms:7173448399" class="btn-primary">Book This Package</a>
+        <button type="button" class="btn-primary" onclick="openBooking('Signature Detail')">Book This Package</button>
       </div>
 
       <div class="plan">
         <h3>Premium Detail</h3>
         <div class="price"><sup>$</sup>260</div>
         <p class="desc">Our most thorough service, built for cars that need real restoration. On top of a full exterior wash and complete interior clean, we spot-treat visible stains in the carpets, seats, and mats, clean built-up dirt off the doors, bugs from the bumper, dress the trim inside and out, and finish with a clay bar treatment for paint that's smooth to the touch, not just clean. This is the level of care for anyone who wants their car looking and feeling its absolute best, not just clean.</p>
-        <a href="sms:7173448399" class="btn-primary">Book This Package</a>
+        <button type="button" class="btn-primary" onclick="openBooking('Premium Detail')">Book This Package</button>
       </div>
     </div>
 
@@ -1302,8 +1545,8 @@
 
 <div class="cta-band">
   <h2>Ready for Your Car to Shine?</h2>
-  <p>Call or text now to schedule your mobile detail.</p>
-  <a href="sms:7173448399" class="btn-primary">Call or Text (717) 344-8399</a>
+  <p>Book in about 30 seconds &mdash; we&rsquo;ll text you back to confirm.</p>
+  <button type="button" class="btn-primary" onclick="openBooking()">Book an Appointment</button>
 </div>
 
 <section id="contact">
@@ -1363,7 +1606,99 @@
   <p>&copy; 2026 Shoreline Shine. Call or text (717) 344-8399 to book.</p>
 </footer>
 
-<a href="sms:7173448399" class="sticky-call">📞 Call or Text (717) 344-8399</a>
+<button type="button" class="sticky-call" onclick="openBooking()">&#128197; Book an Appointment</button>
+
+<div class="booking" id="booking">
+  <div class="booking-panel" role="dialog" aria-modal="true" aria-labelledby="booking-title">
+    <button type="button" class="booking-close" onclick="closeBooking()" aria-label="Close">&times;</button>
+    <h2 id="booking-title">Book an Appointment</h2>
+    <p class="booking-sub">Takes about 30 seconds. We&rsquo;ll text you back to confirm a time.</p>
+
+    <form id="booking-form" novalidate>
+      <fieldset class="field">
+        <legend>Package</legend>
+        <div class="choice-grid" data-group="package">
+          <button type="button" class="choice" data-value="Essential Wash"><span class="choice-name">Essential Wash</span><span class="choice-meta">$80</span></button>
+          <button type="button" class="choice" data-value="Signature Detail"><span class="choice-name">Signature Detail</span><span class="choice-meta">$180</span></button>
+          <button type="button" class="choice" data-value="Premium Detail"><span class="choice-name">Premium Detail</span><span class="choice-meta">$260</span></button>
+        </div>
+      </fieldset>
+
+      <fieldset class="field">
+        <legend>Vehicle type</legend>
+        <div class="choice-grid" data-group="vehicle">
+          <button type="button" class="choice" data-value="Sedan"><span class="choice-name">Sedan</span></button>
+          <button type="button" class="choice" data-value="Truck"><span class="choice-name">Truck</span></button>
+          <button type="button" class="choice" data-value="SUV"><span class="choice-name">SUV</span></button>
+        </div>
+      </fieldset>
+
+      <fieldset class="field">
+        <legend>Vehicle brand</legend>
+        <label class="sr-only" for="brand">Vehicle brand</label>
+        <select id="brand">
+          <option value="">Select a brand&hellip;</option>
+            <option value="Acura">Acura</option>
+            <option value="Audi">Audi</option>
+            <option value="BMW">BMW</option>
+            <option value="Buick">Buick</option>
+            <option value="Cadillac">Cadillac</option>
+            <option value="Chevrolet">Chevrolet</option>
+            <option value="Chrysler">Chrysler</option>
+            <option value="Dodge">Dodge</option>
+            <option value="Ford">Ford</option>
+            <option value="Genesis">Genesis</option>
+            <option value="GMC">GMC</option>
+            <option value="Honda">Honda</option>
+            <option value="Hyundai">Hyundai</option>
+            <option value="Infiniti">Infiniti</option>
+            <option value="Jaguar">Jaguar</option>
+            <option value="Jeep">Jeep</option>
+            <option value="Kia">Kia</option>
+            <option value="Land Rover">Land Rover</option>
+            <option value="Lexus">Lexus</option>
+            <option value="Lincoln">Lincoln</option>
+            <option value="Mazda">Mazda</option>
+            <option value="Mercedes-Benz">Mercedes-Benz</option>
+            <option value="Mini">Mini</option>
+            <option value="Mitsubishi">Mitsubishi</option>
+            <option value="Nissan">Nissan</option>
+            <option value="Porsche">Porsche</option>
+            <option value="Ram">Ram</option>
+            <option value="Subaru">Subaru</option>
+            <option value="Tesla">Tesla</option>
+            <option value="Toyota">Toyota</option>
+            <option value="Volkswagen">Volkswagen</option>
+            <option value="Volvo">Volvo</option>
+          <option value="Other">Other</option>
+        </select>
+        <input type="text" id="brand-other" placeholder="Type your vehicle brand" hidden>
+      </fieldset>
+
+      <fieldset class="field">
+        <legend>Your name</legend>
+        <label class="sr-only" for="cust-name">Your name</label>
+        <input type="text" id="cust-name" placeholder="First and last name" autocomplete="name">
+      </fieldset>
+
+      <fieldset class="field">
+        <legend>Address</legend>
+        <label class="sr-only" for="cust-address">Address</label>
+        <input type="text" id="cust-address" placeholder="Where should we come to?" autocomplete="street-address">
+      </fieldset>
+
+      <p class="booking-error" id="booking-error" hidden></p>
+
+      <div class="booking-preview" id="booking-preview" hidden>
+        <span>Your message</span>
+        <p id="booking-preview-text"></p>
+      </div>
+
+      <button type="submit" class="btn-primary booking-submit">Book Now</button>
+      <p class="booking-note">Opens your Messages app with the details filled in &mdash; just hit send.</p>
+    </form>
+  </div>
+</div>
 
 <script>
   // Lightbox browses every photo in the same job, so you can step through a
@@ -1535,6 +1870,129 @@
       startX = null;
     }, { passive: true });
   })();
+
+  // ---------- Booking ----------
+  var BOOKING_PHONE = '7173448399';
+  var picked = { package: '', vehicle: '' };
+
+  function openBooking(pkg) {
+    var modal = document.getElementById('booking');
+    if (pkg) selectChoice('package', pkg);
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    updatePreview();
+    var first = modal.querySelector(pkg ? '[data-group="vehicle"] .choice' : '.choice');
+    if (first) first.focus({ preventScroll: true });
+  }
+
+  function closeBooking() {
+    document.getElementById('booking').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function selectChoice(group, value) {
+    var wrap = document.querySelector('[data-group="' + group + '"]');
+    if (!wrap) return;
+    picked[group] = value;
+    Array.prototype.forEach.call(wrap.querySelectorAll('.choice'), function (b) {
+      var on = b.getAttribute('data-value') === value;
+      b.classList.toggle('selected', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  }
+
+  document.querySelectorAll('[data-group]').forEach(function (wrap) {
+    wrap.addEventListener('click', function (e) {
+      var btn = e.target.closest('.choice');
+      if (!btn) return;
+      selectChoice(wrap.getAttribute('data-group'), btn.getAttribute('data-value'));
+      updatePreview();
+    });
+  });
+
+  var brandSelect = document.getElementById('brand');
+  var brandOther = document.getElementById('brand-other');
+
+  brandSelect.addEventListener('change', function () {
+    var other = brandSelect.value === 'Other';
+    brandOther.hidden = !other;
+    if (other) brandOther.focus();
+    updatePreview();
+  });
+
+  ['brand-other', 'cust-name', 'cust-address'].forEach(function (id) {
+    document.getElementById(id).addEventListener('input', updatePreview);
+  });
+
+  function chosenBrand() {
+    if (brandSelect.value === 'Other') return brandOther.value.trim();
+    return brandSelect.value;
+  }
+
+  // "a Toyota" but "an Audi"
+  function article(word) {
+    return /^[aeiou]/i.test(word || '') ? 'an' : 'a';
+  }
+
+  function buildMessage() {
+    var name = document.getElementById('cust-name').value.trim();
+    var address = document.getElementById('cust-address').value.trim();
+    var brand = chosenBrand();
+    return 'Hey my name is ' + name + ' and I want the ' + picked.package +
+      ' package. I have ' + article(brand) + ' ' + brand + ' ' +
+      vehicleWord() + " and I'd like it done at " + address + '.';
+  }
+
+  // "sedan" and "truck" read better lowercase; SUV is an acronym.
+  function vehicleWord() {
+    return picked.vehicle === 'SUV' ? 'SUV' : picked.vehicle.toLowerCase();
+  }
+
+  function updatePreview() {
+    var box = document.getElementById('booking-preview');
+    var ready = picked.package && picked.vehicle && chosenBrand() &&
+      document.getElementById('cust-name').value.trim() &&
+      document.getElementById('cust-address').value.trim();
+    box.hidden = !ready;
+    if (ready) document.getElementById('booking-preview-text').textContent = buildMessage();
+  }
+
+  function showError(msg) {
+    var el = document.getElementById('booking-error');
+    el.textContent = msg;
+    el.hidden = false;
+    el.scrollIntoView({ block: 'nearest' });
+  }
+
+  document.getElementById('booking-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    document.getElementById('booking-error').hidden = true;
+
+    if (!picked.package) return showError('Please choose a package.');
+    if (!picked.vehicle) return showError('Please choose your vehicle type.');
+    if (!chosenBrand()) return showError('Please tell us your vehicle brand.');
+    if (!document.getElementById('cust-name').value.trim()) return showError('Please enter your name.');
+    if (!document.getElementById('cust-address').value.trim()) return showError('Please enter the address.');
+
+    var body = encodeURIComponent(buildMessage());
+    // iOS wants sms:number&body=, Android wants sms:number?body=
+    var ua = navigator.userAgent;
+    var isIOS = /iPad|iPhone|iPod/.test(ua) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    var isMac = /Macintosh/.test(ua);
+    var sep = (isIOS || isMac) ? '&' : '?';
+    window.location.href = 'sms:' + BOOKING_PHONE + sep + 'body=' + body;
+  });
+
+  document.getElementById('booking').addEventListener('click', function (e) {
+    if (e.target.id === 'booking') closeBooking();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && document.getElementById('booking').classList.contains('open')) {
+      closeBooking();
+    }
+  });
 
 </script>
 
