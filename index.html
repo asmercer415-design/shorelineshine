@@ -808,6 +808,43 @@
     .lightbox-next { right: 8px; }
   }
 
+  /* ---------- Questions ---------- */
+  .questions {
+    background: var(--bg-alt);
+    text-align: center;
+  }
+
+  .questions h2 {
+    font-size: clamp(1.5rem, 3.6vw, 2rem);
+    font-weight: 900;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+
+  .questions p {
+    color: var(--muted);
+    max-width: 520px;
+    margin: 0 auto 26px;
+  }
+
+  .question-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+  }
+
+  .question-btns a {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+  }
+
+  @media (max-width: 500px) {
+    .question-btns { flex-direction: column; align-items: stretch; }
+    .question-btns a { justify-content: center; }
+  }
+
   /* ---------- Booking ---------- */
   .sr-only {
     position: absolute;
@@ -1532,6 +1569,17 @@
   <button type="button" class="btn-primary" onclick="openBooking()">Book an Appointment</button>
 </div>
 
+<section class="questions" id="questions">
+  <div class="container">
+    <h2>Questions?</h2>
+    <p>Not sure which package your vehicle needs, or want to check availability first? Reach out &mdash; we&rsquo;re happy to help.</p>
+    <div class="question-btns">
+      <a href="sms:7173448399" class="btn-primary">&#128172; Text Us</a>
+      <a href="tel:7173448399" class="btn-secondary">&#128222; Call Us</a>
+    </div>
+  </div>
+</section>
+
 <section id="contact">
   <div class="container">
     <div class="section-head">
@@ -1914,7 +1962,7 @@
     var address = document.getElementById('cust-address').value.trim();
     return 'Hi, my name is ' + fullName() + '. I would like to book the ' +
       picked.package + ' package for my ' + chosenBrand() + ' ' + vehicleWord() +
-      ' at ' + address + '. Please let me know what times you have available. Thank you!';
+      ' at ' + address + '.';
   }
 
   // "sedan" and "truck" read better lowercase; SUV is an acronym.
