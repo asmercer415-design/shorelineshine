@@ -352,6 +352,46 @@
     font-size: 0.95rem;
   }
 
+  .payments {
+    max-width: 780px;
+    margin: 44px auto 0;
+    text-align: center;
+    border-top: 1px solid var(--card-border);
+    padding-top: 26px;
+  }
+
+  .payments h3 {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+
+  .payments p {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  .payment-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    list-style: none;
+  }
+
+  .payment-list li {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    color: var(--silver);
+    font-size: 0.88rem;
+    font-weight: 600;
+    padding: 9px 18px;
+    border-radius: 30px;
+  }
+
   .fees-note {
     max-width: 780px;
     margin: 40px auto 0;
@@ -969,6 +1009,18 @@
       </div>
     </div>
 
+    <div class="payments">
+      <h3>Payment Methods</h3>
+      <p>Pay however is easiest for you &mdash; due once the detail is finished.</p>
+      <ul class="payment-list">
+        <li>Cash</li>
+        <li>Check</li>
+        <li>Venmo</li>
+        <li>PayPal</li>
+        <li>Apple Cash</li>
+      </ul>
+    </div>
+
     <p class="fees-note">Vehicles with heavy pet hair may require an additional charge. SUVs will incur a $20 surcharge. Any applicable fees will be communicated prior to service.</p>
   </div>
 </section>
@@ -1243,6 +1295,13 @@
           <div>
             <h4>Availability</h4>
             <p>Call or text to check current openings</p>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">&#128179;</div>
+          <div>
+            <h4>Payment</h4>
+            <p>Cash, check, Venmo, PayPal or Apple Cash</p>
           </div>
         </div>
         <div class="contact-row">
