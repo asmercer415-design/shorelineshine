@@ -2,11 +2,12 @@ This folder holds the compressed photos/videos used in the
 "Our Work" section of index.html, organized by vehicle:
 
   before-cargo-before.jpg / before-cargo-after.jpg   Before & After pair
-  before-after-clip-1.mov / before-after-clip-2.mov  Before & After videos
+  interior-x-series.mp4 / interior-black.mp4         Before & After interior videos
+  before-after-clip-1.mp4 / x3-exterior.mp4          Before & After videos
   audi-*.jpg                                          Audi A5 interior detail
   m3-*.jpg                                            BMW M3 interior detail
   i8-*.jpg                                             BMW i8 detail + exterior
-  pov-process.mov                                      Behind-the-scenes clip
+  pov-process.mp4                                    Behind-the-scenes POV clip
 
 Photos here are already resized/compressed for web use — the
 untouched originals still live in the top-level "Photos" folder.
