@@ -953,21 +953,11 @@
 
   .choice:hover { border-color: rgba(46, 163, 242, 0.6); }
 
-  .choice .choice-meta {
-    display: block;
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: var(--muted);
-    margin-top: 3px;
-  }
-
   .choice.selected {
     border-color: var(--blue);
     background: rgba(46, 163, 242, 0.13);
     color: #fff;
   }
-
-  .choice.selected .choice-meta { color: var(--blue-bright); }
 
   /* Checkmark badge on the selected box */
   .choice.selected::after {
@@ -1064,7 +1054,6 @@
     .choice-grid { grid-template-columns: 1fr; }
     .name-grid { grid-template-columns: 1fr; }
     .choice { display: flex; justify-content: space-between; align-items: center; }
-    .choice .choice-meta { margin-top: 0; }
   }
 
   /* ---------- Why us ---------- */
@@ -1656,9 +1645,9 @@
       <fieldset class="field">
         <legend>Package</legend>
         <div class="choice-grid" data-group="package">
-          <button type="button" class="choice" data-value="Essential Wash"><span class="choice-name">Essential Wash</span><span class="choice-meta">$80</span></button>
-          <button type="button" class="choice" data-value="Signature Detail"><span class="choice-name">Signature Detail</span><span class="choice-meta">$180</span></button>
-          <button type="button" class="choice" data-value="Premium Detail"><span class="choice-name">Premium Detail</span><span class="choice-meta">$260</span></button>
+          <button type="button" class="choice" data-value="Essential Wash"><span class="choice-name">Essential Wash</span></button>
+          <button type="button" class="choice" data-value="Signature Detail"><span class="choice-name">Signature Detail</span></button>
+          <button type="button" class="choice" data-value="Premium Detail"><span class="choice-name">Premium Detail</span></button>
         </div>
       </fieldset>
 
