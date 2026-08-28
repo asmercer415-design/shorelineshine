@@ -1042,6 +1042,58 @@
     margin-top: 12px;
   }
 
+  /* Access requirements + prep reminder, shown right above the submit button */
+  .prep-note {
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    background: rgba(46, 163, 242, 0.06);
+    padding: 16px 16px 14px;
+    margin: 4px 0 18px;
+  }
+  .prep-note h3 {
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--blue-bright);
+    margin: 0 0 10px;
+  }
+  .prep-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+  }
+  .prep-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.45;
+    color: #fff;
+  }
+  .prep-mark {
+    flex: none;
+    width: 26px;
+    height: 26px;
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    font-size: 0.85rem;
+    background: rgba(46, 163, 242, 0.16);
+    border: 1px solid var(--card-border);
+  }
+  .prep-reminder {
+    margin: 12px 0 0;
+    padding-top: 12px;
+    border-top: 1px solid var(--card-border);
+    font-size: 0.86rem;
+    line-height: 1.5;
+    color: var(--silver);
+  }
+
   @media (max-width: 560px) {
     .booking { padding: 0; }
     .booking-panel {
@@ -1717,6 +1769,15 @@
         <label class="sr-only" for="cust-address">Address</label>
         <input type="text" id="cust-address" placeholder="Where should we come to?" autocomplete="street-address">
       </fieldset>
+
+      <div class="prep-note">
+        <h3>Please read before booking</h3>
+        <ul class="prep-list">
+          <li><span class="prep-mark" aria-hidden="true">&#128167;</span><span>We need access to an outdoor spigot so we can hook up our hose.</span></li>
+          <li><span class="prep-mark" aria-hidden="true">&#9889;</span><span>We also need access to an electrical outlet to run our equipment.</span></li>
+        </ul>
+        <p class="prep-reminder">A kind reminder: please remove your personal belongings from the vehicle before we arrive so we can clean every surface.</p>
+      </div>
 
       <p class="booking-error" id="booking-error" hidden></p>
 
